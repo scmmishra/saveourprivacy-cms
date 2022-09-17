@@ -1,6 +1,5 @@
 import { CollectionConfig } from 'payload/types';
 
-
 const Coverage: CollectionConfig = {
   slug: 'coverage',
   admin: {
@@ -8,11 +7,10 @@ const Coverage: CollectionConfig = {
     useAsTitle: 'title',
   },
   versions: {
-		drafts: true,
-	},
+    drafts: true,
+  },
   access: {
     read: ({ req: { user } }) => {
-
       // users who are authenticated will see all posts
       if (user) {
         return true;
@@ -34,15 +32,16 @@ const Coverage: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: true
+      required: true,
     },
     {
       name: 'link',
       type: 'text',
       admin: {
-        description: 'This is the link to the article, should start with an http:// or https://',
+        description:
+          'This is the link to the article, should start with an http:// or https://',
       },
-      required: true
+      required: true,
     },
     {
       name: 'publishDate',
@@ -51,7 +50,7 @@ const Coverage: CollectionConfig = {
         position: 'sidebar',
         description: 'This link will show up chronologically based on this date',
       },
-      defaultValue: () => (new Date()),
+      defaultValue: () => new Date(),
     },
     {
       name: 'dateOfPublication',
@@ -59,15 +58,15 @@ const Coverage: CollectionConfig = {
       admin: {
         description: 'The date at which the article was published',
       },
-      required: true
+      required: true,
     },
     {
       name: 'source',
-      label: "Source / Publisher / Author",
+      label: 'Source / Publisher / Author',
       type: 'text',
-      required: true
-    }
+      required: true,
+    },
   ],
-}
+};
 
 export default Coverage;

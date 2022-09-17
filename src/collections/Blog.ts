@@ -1,20 +1,17 @@
 import { CollectionConfig } from 'payload/types';
 import { formatSlug } from '../utils/string';
 
-
 const Blog: CollectionConfig = {
   slug: 'blog',
-  upload: true,
   admin: {
     defaultColumns: ['title', 'author', 'category', 'tags', 'status'],
     useAsTitle: 'title',
   },
   versions: {
-		drafts: true,
-	},
+    drafts: true,
+  },
   access: {
     read: ({ req: { user } }) => {
-
       // users who are authenticated will see all posts
       if (user) {
         return true;
@@ -49,9 +46,7 @@ const Blog: CollectionConfig = {
         position: 'sidebar',
       },
       hooks: {
-        beforeValidate: [
-          formatSlug('title'),
-        ],
+        beforeValidate: [formatSlug('title')],
       },
     },
     {
@@ -66,13 +61,13 @@ const Blog: CollectionConfig = {
         position: 'sidebar',
         description: 'Posts will not be public until this date',
       },
-      defaultValue: () => (new Date()),
+      defaultValue: () => new Date(),
     },
     {
       name: 'content',
-      type: 'richText'
-    }
+      type: 'richText',
+    },
   ],
-}
+};
 
 export default Blog;
