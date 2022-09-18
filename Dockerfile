@@ -6,7 +6,8 @@ FROM node:${NODE_VERSION}-alpine AS build
 WORKDIR /home/node
 
 # Install dependencies.
-COPY package*.json .
+COPY package.json .
+COPY pnpm-lock.yaml .
 
 # install pnpm
 RUN yarn global add pnpm
