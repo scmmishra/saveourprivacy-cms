@@ -27,6 +27,9 @@ FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /home/node
 
+# set production env
+ENV NODE_ENV production
+
 # Copy the built application.
 COPY --from=build /home/node /home/node
 
