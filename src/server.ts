@@ -15,10 +15,9 @@ payload.init({
   mongoURL: process.env.MONGODB_URI,
   express: app,
   onInit: () => {
-    payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
+    payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
   },
-})
+});
 
 // Add your own express routes here
-
 app.listen(3000);
