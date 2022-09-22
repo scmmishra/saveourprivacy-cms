@@ -34,7 +34,7 @@ ENV NODE_ENV production
 COPY --from=build /home/node /home/node
 
 # Expose the service's port.
-EXPOSE 80
+EXPOSE 3000
 
 # Run the service.
 CMD ["npm", "run", "serve"]
