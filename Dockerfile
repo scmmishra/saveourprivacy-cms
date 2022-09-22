@@ -13,10 +13,6 @@ RUN yarn global add pnpm
 # run pnpm
 RUN pnpm i
 
-# Copy the source files.
-COPY src src
-COPY tsconfig.json .
-
 # Build the application.
 RUN pnpm build
 
