@@ -3,11 +3,9 @@ ARG NODE_VERSION=16
 # Setup the build container.
 FROM node:${NODE_VERSION}-alpine AS build
 
-WORKDIR /home/node
+WORKDIR /app
 
-# Install dependencies.
-COPY package.json .
-COPY pnpm-lock.yaml .
+COPY . .
 
 # install pnpm
 RUN yarn global add pnpm
