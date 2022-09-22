@@ -34,4 +34,4 @@ COPY --from=build /home/node /home/node
 EXPOSE 3000
 
 # Run the service.
-CMD ["cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js"]
+CMD ["npm", "run", "serve"]
