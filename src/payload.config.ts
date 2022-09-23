@@ -12,6 +12,7 @@ import seo from '@payloadcms/plugin-seo';
 export default buildConfig({
   serverURL: process.env.SERVER_URL ?? 'http://localhost:3000',
   admin: {
+    disable: false,
     user: Users.slug,
   },
   collections: [Users, Blog, Coverage, Individual, Organisation],
