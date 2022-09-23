@@ -1,20 +1,15 @@
-ARG NODE_VERSION=16
-
 # Setup the build container.
-FROM node:${NODE_VERSION}-alpine AS build
+FROM node:14-alpine AS build
 
 WORKDIR /app
 
 COPY . .
 
-# install pnpm
-RUN yarn global add pnpm
-
-# run pnpm
-RUN pnpm i
+# run yarn
+RUN yarn
 
 # Build the application.
-RUN pnpm build
+RUN yarn build
 
 # set production env
 ENV NODE_ENV production
@@ -23,4 +18,4 @@ ENV NODE_ENV production
 EXPOSE 3000
 
 # Run the service.
-CMD ["npm", "run", "serve"]
+CMD ["yarn", "run", "serve"]
