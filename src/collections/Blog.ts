@@ -4,13 +4,14 @@ import { formatSlug } from '../utils/string';
 const Blog: CollectionConfig = {
   slug: 'blog',
   admin: {
-    defaultColumns: ['title', 'author', 'category', 'tags', 'status'],
+    defaultColumns: ['title', 'authorString', 'category', 'tags', 'status'],
     useAsTitle: 'title',
   },
   versions: {
     drafts: true,
   },
   access: {
+    create: () => true,
     read: ({ req: { user } }) => {
       // users who are authenticated will see all posts
       if (user) {
@@ -51,8 +52,14 @@ const Blog: CollectionConfig = {
     },
     {
       name: 'author',
+      hidden: true,
       type: 'relationship',
-      relationTo: 'users',
+      relationTo: 'authors',
+    },
+    {
+      name: 'authorString',
+      label: 'Author',
+      type: 'text',
     },
     {
       name: 'publishDate',

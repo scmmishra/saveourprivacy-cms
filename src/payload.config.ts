@@ -5,6 +5,7 @@ import Blog from './collections/Blog';
 import Coverage from './collections/Coverage';
 import Organisation from './collections/Organisation';
 import Individual from './collections/Individual';
+import Authors from './collections/Authors';
 
 import Principles from './globals/principles';
 import Bill from './globals/bill';
@@ -18,7 +19,7 @@ export default buildConfig({
     user: Users.slug,
   },
   globals: [Principles, Bill],
-  collections: [Users, Blog, Coverage, Individual, Organisation],
+  collections: [Users, Authors, Blog, Coverage, Individual, Organisation],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
