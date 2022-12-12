@@ -5,7 +5,9 @@ import Blog from './collections/Blog';
 import Coverage from './collections/Coverage';
 import Organisation from './collections/Organisation';
 import Individual from './collections/Individual';
+
 import Principles from './globals/principles';
+import Bill from './globals/bill';
 
 import seo from '@payloadcms/plugin-seo';
 
@@ -15,8 +17,8 @@ export default buildConfig({
     disable: false,
     user: Users.slug,
   },
+  globals: [Principles, Bill],
   collections: [Users, Blog, Coverage, Individual, Organisation],
-  globals: [Principles],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
@@ -26,7 +28,7 @@ export default buildConfig({
   plugins: [
     seo({
       collections: ['blog'],
-      globals: ['principles'],
+      globals: ['principles', 'bill'],
       tabbedUI: true,
     }),
   ],
