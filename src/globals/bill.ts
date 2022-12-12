@@ -73,7 +73,7 @@ const Bill: GlobalConfig = {
             {
               name: 'chapters',
               type: 'blocks',
-              minRows: 1,
+              minRows: 0,
               maxRows: 10,
               blocks: [ChapterBlock],
             },
