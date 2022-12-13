@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { defaultAccessPolicy } from '../utils/access';
 import { formatSlug } from '../utils/string';
 
 const Blog: CollectionConfig = {
@@ -10,8 +11,7 @@ const Blog: CollectionConfig = {
   versions: {
     drafts: true,
   },
-  access: {
-    create: () => true,
+  access: defaultAccessPolicy({
     read: ({ req: { user } }) => {
       // users who are authenticated will see all posts
       if (user) {
@@ -32,7 +32,7 @@ const Blog: CollectionConfig = {
         ],
       };
     },
-  },
+  }),
   fields: [
     {
       name: 'title',
@@ -42,7 +42,7 @@ const Blog: CollectionConfig = {
       name: 'slug',
       label: 'Slug',
       type: 'text',
-      localized: true,
+      index: true,
       admin: {
         position: 'sidebar',
       },
