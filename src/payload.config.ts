@@ -11,15 +11,16 @@ import Principles from './globals/principles';
 import Bill from './globals/bill';
 
 import seo from '@payloadcms/plugin-seo';
+import Media from './collections/Media';
 
 export default buildConfig({
-  serverURL: process.env.SERVER_URL ?? 'http://localhost:3000',
+  serverURL: process.env.SERVER_URL ?? 'http://localhost:4000',
   admin: {
     disable: false,
     user: Users.slug,
   },
   globals: [Principles, Bill],
-  collections: [Users, Authors, Blog, Coverage, Individual, Organisation],
+  collections: [Users, Authors, Blog, Coverage, Individual, Organisation, Media],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
@@ -29,6 +30,7 @@ export default buildConfig({
   plugins: [
     seo({
       collections: ['blog'],
+      uploadsCollection: 'media',
       globals: ['principles', 'bill'],
       tabbedUI: true,
     }),
