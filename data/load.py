@@ -10,7 +10,7 @@ def load_csv(filename):
 
 
 def make_post(base, json_data):
-    url = f"http://localhost:3000/api/{base}"
+    url = f"http://localhost:4000/api/{base}"
     headers = {"Content-Type": "application/json"}
 
     response = requests.post(
@@ -19,14 +19,16 @@ def make_post(base, json_data):
         json=json_data,
     )
     print(response.status_code)
+    print(response.content)
 
 
 def load_blogs():
-    data = load_blogs()
+    data = load_csv("blog-export.csv")
     for row in data:
         json_data = {
             "title": row["title"],
             "slug": row["slug"],
+            "_status": "published",
             "authorString": row["name"],
             "publishDate": row["publish_date"],
         }
