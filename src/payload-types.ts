@@ -114,6 +114,7 @@ export interface Bill {
 export interface User {
   id: string;
   name?: string;
+  roles: ('admin' | 'public')[];
   email?: string;
   resetPasswordToken?: string;
   resetPasswordExpiration?: string;
@@ -130,7 +131,6 @@ export interface Author {
   id: string;
   name: string;
   bio?: string;
-  user?: string | User;
   createdAt: string;
   updatedAt: string;
 }
@@ -142,8 +142,7 @@ export interface Blog {
   id: string;
   title?: string;
   slug?: string;
-  author?: string | Author;
-  authorString?: string;
+  author?: string[] | Author[];
   publishDate?: string;
   content?: {
     [k: string]: unknown;
