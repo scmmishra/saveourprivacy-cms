@@ -12,16 +12,29 @@ import Media from './collections/Media';
 import Principles from './globals/principles';
 import Bill from './globals/bill';
 
-import { adapter } from './utils/s3';
-
 import seo from '@payloadcms/plugin-seo';
+
+import { Logo } from './components/Logo';
+import { Icon } from './components/Icon';
+
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
+import { adapter } from './utils/s3';
 
 export default buildConfig({
   serverURL: process.env.SERVER_URL ?? 'http://localhost:4000',
   admin: {
     disable: false,
     user: Users.slug,
+    meta: {
+      titleSuffix: '- Save our Privacy',
+      favicon: '/assets/favicon.png',
+    },
+    components: {
+      graphics: {
+        Logo,
+        Icon,
+      },
+    },
   },
   globals: [Principles, Bill],
   collections: [Users, Authors, Blog, Coverage, Individual, Organisation, Media],
