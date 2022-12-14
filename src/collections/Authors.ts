@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { defaultAccessPolicy } from '../utils/access';
 
 const Authors: CollectionConfig = {
   slug: 'authors',
@@ -6,9 +7,7 @@ const Authors: CollectionConfig = {
     defaultColumns: ['name', 'bio', 'user'],
     useAsTitle: 'name',
   },
-  access: {
-    read: () => true,
-  },
+  access: defaultAccessPolicy(),
   fields: [
     {
       name: 'name',
@@ -18,12 +17,6 @@ const Authors: CollectionConfig = {
     {
       name: 'bio',
       type: 'textarea',
-    },
-    {
-      name: 'user',
-      unique: true,
-      type: 'relationship',
-      relationTo: 'users',
     },
   ],
 };
