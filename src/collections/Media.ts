@@ -1,12 +1,14 @@
 import { CollectionConfig } from 'payload/types';
 import path from 'path';
+import { isAdmin } from '../access/isAdmin';
 
 const Media: CollectionConfig = {
   slug: 'media',
   access: {
-    // Payload's access control functions apply to files also, meaning you can permit or deny file downloads easily
+    create: isAdmin,
     read: () => true,
-    create: () => true,
+    update: isAdmin,
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: 'filename',

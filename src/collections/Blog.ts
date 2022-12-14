@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types';
-import { defaultAccessPolicy } from '../access';
+import { isAdmin } from '../access/isAdmin';
+import { publishedOnly } from '../access/publishedOnly';
 import { formatSlug } from '../utils/string';
 
 const Blog: CollectionConfig = {
@@ -11,28 +12,13 @@ const Blog: CollectionConfig = {
   versions: {
     drafts: true,
   },
-  access: defaultAccessPolicy({
-    read: ({ req: { user } }) => {
-      // users who are authenticated will see all posts
-      if (user) {
-        return true;
-      }
-
-      // query publishDate to control when posts are visible to guests
-      return {
-        and: [
-          {
-            publishDate: {
-              less_than: new Date().toJSON(),
-            },
-            _status: {
-              equals: 'published',
-            },
-          },
-        ],
-      };
-    },
-  }),
+  access: {
+    create: isAdmin,
+    read: publishedOnly,
+    readVersions: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
+  },
   fields: [
     {
       name: 'title',

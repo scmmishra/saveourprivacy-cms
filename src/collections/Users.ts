@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
-import { isAdminFieldLevel } from '../access/isAdmin';
-import { isAdminOrSelfFieldLevel } from '../access/isAdminOrSelf';
+import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
+import { isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access/isAdminOrSelf';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -9,7 +9,10 @@ const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
+    create: isAdmin,
     read: () => true,
+    update: isAdminOrSelf,
+    delete: isAdminOrSelf,
   },
   fields: [
     // Email added by default

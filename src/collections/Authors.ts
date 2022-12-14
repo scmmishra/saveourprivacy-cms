@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { defaultAccessPolicy } from '../access';
+import { isAdmin } from '../access/isAdmin';
 
 const Authors: CollectionConfig = {
   slug: 'authors',
@@ -7,7 +7,7 @@ const Authors: CollectionConfig = {
     defaultColumns: ['name', 'bio', 'user'],
     useAsTitle: 'name',
   },
-  access: defaultAccessPolicy(),
+  access: { create: isAdmin, read: () => true, update: isAdmin, delete: isAdmin },
   fields: [
     {
       name: 'name',
