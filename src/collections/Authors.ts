@@ -3,24 +3,11 @@ import { CollectionConfig } from 'payload/types';
 const Authors: CollectionConfig = {
   slug: 'authors',
   admin: {
+    defaultColumns: ['name', 'bio', 'user'],
     useAsTitle: 'name',
   },
   access: {
     read: () => true,
-    update: ({ req: { user } }) => {
-      return {
-        and: [
-          {
-            publishDate: {
-              less_than: new Date().toJSON(),
-            },
-            _status: {
-              equals: 'published',
-            },
-          },
-        ],
-      };
-    },
   },
   fields: [
     {
