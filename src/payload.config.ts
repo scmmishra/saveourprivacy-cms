@@ -1,17 +1,21 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
+
 import Users from './collections/Users';
 import Blog from './collections/Blog';
 import Coverage from './collections/Coverage';
 import Organisation from './collections/Organisation';
 import Individual from './collections/Individual';
 import Authors from './collections/Authors';
+import Media from './collections/Media';
 
 import Principles from './globals/principles';
 import Bill from './globals/bill';
 
+import { adapter } from './utils/s3';
+
 import seo from '@payloadcms/plugin-seo';
-import Media from './collections/Media';
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 
 export default buildConfig({
   serverURL: process.env.SERVER_URL ?? 'http://localhost:4000',
@@ -33,6 +37,13 @@ export default buildConfig({
       uploadsCollection: 'media',
       globals: ['principles', 'bill'],
       tabbedUI: true,
+    }),
+    cloudStorage({
+      collections: {
+        media: {
+          adapter: adapter, // see docs for the adapter you want to use
+        },
+      },
     }),
   ],
 });

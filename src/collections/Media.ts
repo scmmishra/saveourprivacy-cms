@@ -1,5 +1,4 @@
 import { CollectionConfig } from 'payload/types';
-import path from 'path';
 import { isAdmin } from '../access/isAdmin';
 
 const Media: CollectionConfig = {
@@ -11,24 +10,14 @@ const Media: CollectionConfig = {
     delete: isAdmin,
   },
   admin: {
-    useAsTitle: 'filename',
+    useAsTitle: 'alt',
     description: 'Uploads are set to read-only for this demo.',
     group: 'Content',
   },
-
-  // file uploads are stored on the server by default, plugins are available for cloud storage
-  // https://github.com/richardvanbergen/payload-plugin-cloud-storage as an example
   upload: {
-    // from the imageSizes below, the admin UI will show this size for previewing
     adminThumbnail: 'thumbnail',
-
-    // staticDir tell Payload where to store files to and allows them to be served
-    staticDir: path.resolve(__dirname, '../../media'),
-
-    // limit the types of files allowed and request validation
+    disableLocalStorage: true,
     mimeTypes: ['image/png', 'image/jpeg'],
-
-    // in addition to the original file, Payload saves resized images automatically
     imageSizes: [
       {
         name: 'thumbnail',
@@ -47,8 +36,6 @@ const Media: CollectionConfig = {
       },
     ],
   },
-
-  // upload collections inherit base fields for file information and imageSizes, then add your own for users to change
   fields: [
     {
       name: 'alt',
