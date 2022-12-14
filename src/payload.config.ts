@@ -14,7 +14,6 @@ import Bill from './globals/bill';
 
 import seo from '@payloadcms/plugin-seo';
 
-import { Logo } from './components/Logo';
 import { Icon } from './components/Icon';
 
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
@@ -31,7 +30,7 @@ export default buildConfig({
     },
     components: {
       graphics: {
-        Logo,
+        Logo: Icon,
         Icon,
       },
     },
