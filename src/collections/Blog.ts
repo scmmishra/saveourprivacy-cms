@@ -52,7 +52,7 @@ const Blog: CollectionConfig = {
     },
     {
       name: 'author',
-      hidden: true,
+      hasMany: true,
       type: 'relationship',
       relationTo: 'authors',
     },
