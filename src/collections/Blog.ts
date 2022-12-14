@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { defaultAccessPolicy } from '../utils/access';
+import { defaultAccessPolicy } from '../access';
 import { formatSlug } from '../utils/string';
 
 const Blog: CollectionConfig = {

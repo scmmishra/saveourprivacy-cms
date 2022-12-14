@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { defaultAccessPolicy } from '../utils/access';
+import { defaultAccessPolicy } from '../access';
 
 const Authors: CollectionConfig = {
   slug: 'authors',
