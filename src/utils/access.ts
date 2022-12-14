@@ -5,7 +5,7 @@ const defaultPayloadAccess = ({ req }) => {
 };
 
 export function defaultAccessPolicy(
-  overrides: CollectionConfig['access'],
+  overrides: CollectionConfig['access'] = {},
 ): CollectionConfig['access'] {
   return Object.assign(
     {

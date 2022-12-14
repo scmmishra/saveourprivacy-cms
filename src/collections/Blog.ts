@@ -57,11 +57,6 @@ const Blog: CollectionConfig = {
       relationTo: 'authors',
     },
     {
-      name: 'authorString',
-      label: 'Author',
-      type: 'text',
-    },
-    {
       name: 'publishDate',
       type: 'date',
       admin: {
