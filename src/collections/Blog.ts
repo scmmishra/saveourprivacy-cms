@@ -13,8 +13,7 @@ const Blog: CollectionConfig = {
     drafts: true,
   },
   access: {
-    // create: isAdmin,
-    create: () => true,
+    create: isAdmin,
     read: publishedOnly,
     readVersions: isAdmin,
     update: isAdmin,

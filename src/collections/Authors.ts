@@ -8,8 +8,7 @@ const Authors: CollectionConfig = {
     useAsTitle: 'name',
   },
   access: {
-    // create: isAdmin,
-    create: () => true,
+    create: isAdmin,
     read: () => true,
     update: isAdmin,
     delete: isAdmin,
