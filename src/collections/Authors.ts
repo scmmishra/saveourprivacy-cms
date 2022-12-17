@@ -7,7 +7,13 @@ const Authors: CollectionConfig = {
     defaultColumns: ['name', 'bio', 'user'],
     useAsTitle: 'name',
   },
-  access: { create: isAdmin, read: () => true, update: isAdmin, delete: isAdmin },
+  access: {
+    // create: isAdmin,
+    create: () => true,
+    read: () => true,
+    update: isAdmin,
+    delete: isAdmin,
+  },
   fields: [
     {
       name: 'name',
