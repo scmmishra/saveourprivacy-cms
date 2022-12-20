@@ -53,6 +53,7 @@ export default buildConfig({
     cloudStorage({
       collections: {
         media: {
+          disablePayloadAccessControl: true,
           adapter: adapter, // see docs for the adapter you want to use
         },
       },
