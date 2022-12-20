@@ -20,7 +20,7 @@ import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { adapter } from './utils/s3';
 
 export default buildConfig({
-  serverURL: process.env.SERVER_URL ?? 'http://localhost:4000',
+  serverURL: process.env.SERVER_URL,
   admin: {
     disable: false,
     user: Users.slug,
