@@ -9,6 +9,8 @@ async function loadCsv(filename) {
 
 const blogData = await loadCsv('./data/blog-export.csv');
 const coverageData = await loadCsv('./data/coverage-export.csv');
+const orgData = await loadCsv('./data/orgs-export.csv');
+const individualData = await loadCsv('./data/individuals-export.csv');
 
 async function makePost(base, jsonData) {
   const url = `https://sop-admin.shivam.dev/api/${base}`; // prod
@@ -26,6 +28,27 @@ async function makePost(base, jsonData) {
   });
 
   return response;
+}
+
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+async function loadOrgs() {
+  for (const row of orgData) {
+    await makePost('organisation', row);
+  }
+}
+
+async function loadIndividuals() {
+  let count = 0;
+  for (const row of individualData) {
+    if (count % 30 === 0) {
+      console.log(`Created: ${count} individuals`);
+    }
+    await makePost('individual', row);
+    count++;
+  }
 }
 
 async function loadCoverage() {
@@ -94,5 +117,7 @@ async function loadAuthors() {
 const authorIds = await loadAuthors();
 await loadBlogs(authorIds);
 await loadCoverage();
+await loadOrgs();
+await loadIndividuals();
 
 export {};
