@@ -21,8 +21,6 @@ const Individual: CollectionConfig = {
     {
       name: 'date',
       type: 'date',
-      required: true,
-      defaultValue: () => new Date(),
     },
     {
       name: 'email',

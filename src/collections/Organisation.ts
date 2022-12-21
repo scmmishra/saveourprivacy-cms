@@ -22,8 +22,7 @@ const Organisation: CollectionConfig = {
     {
       name: 'date',
       type: 'date',
-      required: true,
-      defaultValue: () => new Date(),
+      required: false,
     },
     {
       name: 'link',
