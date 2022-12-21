@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
 
 const Individual: CollectionConfig = {
   slug: 'individual',
@@ -6,13 +7,22 @@ const Individual: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
-    read: () => true,
+    read: isAdmin,
+    create: () => true,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {
       name: 'name',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'date',
+      type: 'date',
+      required: true,
+      defaultValue: () => new Date(),
     },
     {
       name: 'email',

@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
 
 const Organisation: CollectionConfig = {
   slug: 'organisation',
@@ -6,7 +7,10 @@ const Organisation: CollectionConfig = {
     useAsTitle: 'orgName',
   },
   access: {
-    read: () => true,
+    read: isAdmin,
+    create: () => true,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {
@@ -14,6 +18,12 @@ const Organisation: CollectionConfig = {
       label: 'Organisation Name',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'date',
+      type: 'date',
+      required: true,
+      defaultValue: () => new Date(),
     },
     {
       name: 'link',
