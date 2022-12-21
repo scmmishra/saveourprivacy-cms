@@ -35,6 +35,9 @@ export default buildConfig({
       },
     },
   },
+  rateLimit: {
+    trustProxy: process.env.NODE_ENV === 'production',
+  },
   globals: [Principles, Bill],
   collections: [Users, Authors, Blog, Coverage, Individual, Organisation, Media],
   typescript: {
