@@ -28,7 +28,7 @@ const Individual: CollectionConfig = {
       required: true,
     },
     {
-      name: 'organization',
+      name: 'organisation',
       type: 'text',
     },
     {
