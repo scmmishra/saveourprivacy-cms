@@ -1,4 +1,6 @@
 import { CollectionConfig } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
+import { publishedOnly } from '../access/publishedOnly';
 
 const Coverage: CollectionConfig = {
   slug: 'coverage',
@@ -10,23 +12,11 @@ const Coverage: CollectionConfig = {
     drafts: true,
   },
   access: {
-    read: ({ req: { user } }) => {
-      // users who are authenticated will see all posts
-      if (user) {
-        return true;
-      }
-
-      // query publishDate to control when posts are visible to guests
-      return {
-        and: [
-          {
-            _status: {
-              equals: 'published',
-            },
-          },
-        ],
-      };
-    },
+    create: isAdmin,
+    read: publishedOnly,
+    readVersions: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {
