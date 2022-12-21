@@ -7,10 +7,13 @@ async function loadCsv(filename) {
   return csvData;
 }
 
-const data = await loadCsv('./data/blog-export.csv');
+const blogData = await loadCsv('./data/blog-export.csv');
+const coverageData = await loadCsv('./data/coverage-export.csv');
 
 async function makePost(base, jsonData) {
-  const url = `http://localhost:4000/api/${base}`;
+  const url = `https://sop-admin.shivam.dev/api/${base}`; // prod
+  // const url = `http://localhost:4000/api/${base}`; // local
+
   const headers = {
     'Content-Type': 'application/json',
   };
@@ -25,13 +28,25 @@ async function makePost(base, jsonData) {
   return response;
 }
 
-async function loadBlogs(authors) {
-  for (const row of data) {
-    const authorArray = row['name'].split(', ').map(author => author.trim());
-    console.log(authorArray, authors);
-    const authorIds = authorArray.map(auth => authors[auth]);
+async function loadCoverage() {
+  for (const row of coverageData) {
+    const jsonData = {
+      title: row['title'],
+      link: row['link'],
+      _status: row['status'] === 'live' && row['enabled'] ? 'published' : 'draft',
+      source: row['name'],
+      dateOfPublication: row['date'],
+      publishDate: row['date'],
+    };
 
-    console.log(authorIds);
+    await makePost('coverage', jsonData);
+  }
+}
+
+async function loadBlogs(authors) {
+  for (const row of blogData) {
+    const authorArray = row['name'].split(', ').map(author => author.trim());
+    const authorIds = authorArray.map(auth => authors[auth]);
 
     const jsonData = {
       title: row['title'],
@@ -47,7 +62,7 @@ async function loadBlogs(authors) {
 }
 
 async function loadAuthors() {
-  const authorStrings = data.map(row => row['name']);
+  const authorStrings = blogData.map(row => row['name']);
   const splitCommaStrings = authorStrings.map(string => string.split(','));
   const authors = splitCommaStrings.flat().map(string => string.trim());
 
@@ -77,6 +92,7 @@ async function loadAuthors() {
 }
 
 const authorIds = await loadAuthors();
-loadBlogs(authorIds);
+await loadBlogs(authorIds);
+await loadCoverage();
 
 export {};
