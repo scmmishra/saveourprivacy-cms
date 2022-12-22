@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { isAdmin } from '../access/isAdmin';
+import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
 
 const Organisation: CollectionConfig = {
   slug: 'organisation',
@@ -7,7 +7,7 @@ const Organisation: CollectionConfig = {
     useAsTitle: 'orgName',
   },
   access: {
-    read: isAdmin,
+    read: () => true,
     create: () => true,
     update: isAdmin,
     delete: isAdmin,
@@ -18,31 +18,49 @@ const Organisation: CollectionConfig = {
       label: 'Organisation Name',
       type: 'text',
       required: true,
+      access: {
+        read: () => true,
+      },
     },
     {
       name: 'date',
       type: 'date',
       required: false,
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
     {
       name: 'link',
       label: 'Website',
       type: 'text',
       required: true,
+      access: {
+        read: () => true,
+      },
     },
     {
       name: 'name',
       type: 'text',
       required: true,
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
     {
       name: 'email',
       type: 'email',
       required: true,
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
     {
       name: 'designation',
       type: 'text',
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
   ],
 };

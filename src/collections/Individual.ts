@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { isAdmin } from '../access/isAdmin';
+import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
 
 const Individual: CollectionConfig = {
   slug: 'individual',
@@ -7,7 +7,7 @@ const Individual: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
-    read: isAdmin,
+    read: () => true,
     create: () => true,
     update: isAdmin,
     delete: isAdmin,
@@ -21,24 +21,39 @@ const Individual: CollectionConfig = {
     {
       name: 'date',
       type: 'date',
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
     {
       name: 'email',
       type: 'email',
       required: true,
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
     {
       name: 'organisation',
       type: 'text',
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
     {
       name: 'designation',
       type: 'text',
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
     {
       name: 'declaration',
       type: 'checkbox',
       label: 'Indian Citizen above 18',
+      access: {
+        read: isAdminFieldLevel,
+      },
     },
   ],
 };
