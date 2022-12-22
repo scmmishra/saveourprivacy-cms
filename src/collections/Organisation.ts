@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { enabledOnly } from '../access/enabledOnly';
 import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
 
 const Organisation: CollectionConfig = {
@@ -7,7 +8,7 @@ const Organisation: CollectionConfig = {
     useAsTitle: 'orgName',
   },
   access: {
-    read: () => true,
+    read: enabledOnly,
     create: () => true,
     update: isAdmin,
     delete: isAdmin,
@@ -58,6 +59,16 @@ const Organisation: CollectionConfig = {
     {
       name: 'designation',
       type: 'text',
+      access: {
+        read: isAdminFieldLevel,
+      },
+    },
+    {
+      name: 'enabled',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+      },
       access: {
         read: isAdminFieldLevel,
       },

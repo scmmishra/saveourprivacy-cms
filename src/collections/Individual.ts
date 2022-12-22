@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { enabledOnly } from '../access/enabledOnly';
 import { isAdmin, isAdminFieldLevel } from '../access/isAdmin';
 
 const Individual: CollectionConfig = {
@@ -7,7 +8,7 @@ const Individual: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
-    read: () => true,
+    read: enabledOnly,
     create: () => true,
     update: isAdmin,
     delete: isAdmin,
@@ -51,6 +52,16 @@ const Individual: CollectionConfig = {
       name: 'declaration',
       type: 'checkbox',
       label: 'Indian Citizen above 18',
+      access: {
+        read: isAdminFieldLevel,
+      },
+    },
+    {
+      name: 'enabled',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+      },
       access: {
         read: isAdminFieldLevel,
       },
