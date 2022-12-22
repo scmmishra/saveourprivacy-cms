@@ -30,13 +30,9 @@ async function makePost(base, jsonData) {
   return response;
 }
 
-function delay(time) {
-  return new Promise(resolve => setTimeout(resolve, time));
-}
-
 async function loadOrgs() {
   for (const row of orgData) {
-    await makePost('organisation', row);
+    await makePost('organisation', { ...row, enabled: row['enabled'] === 'Yes' });
   }
 }
 
@@ -46,7 +42,7 @@ async function loadIndividuals() {
     if (count % 30 === 0) {
       console.log(`Created: ${count} individuals`);
     }
-    await makePost('individual', row);
+    await makePost('individual', { ...row, enabled: row['enabled'] === 'Yes' });
     count++;
   }
 }
