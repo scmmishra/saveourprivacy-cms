@@ -40,6 +40,9 @@ const ChapterBlock: Block = {
 
 const Bill: GlobalConfig = {
   slug: 'bill',
+  admin: {
+    group: 'Content',
+  },
   fields: [
     {
       type: 'tabs',

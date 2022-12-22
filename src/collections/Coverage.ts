@@ -7,6 +7,7 @@ const Coverage: CollectionConfig = {
   admin: {
     defaultColumns: ['title', 'link', 'date', 'source'],
     useAsTitle: 'title',
+    group: 'Content',
   },
   versions: {
     drafts: true,

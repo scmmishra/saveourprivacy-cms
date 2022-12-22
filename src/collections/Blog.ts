@@ -8,6 +8,7 @@ const Blog: CollectionConfig = {
   admin: {
     defaultColumns: ['title', 'authorString', 'category', 'tags', 'status'],
     useAsTitle: 'title',
+    group: 'Content',
   },
   versions: {
     drafts: true,

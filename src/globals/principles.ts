@@ -20,6 +20,9 @@ const PrincipleBlock: Block = {
 
 const Principles: GlobalConfig = {
   slug: 'principles',
+  admin: {
+    group: 'Content',
+  },
   fields: [
     {
       name: 'title',

@@ -6,6 +6,7 @@ const Organisation: CollectionConfig = {
   slug: 'organisation',
   admin: {
     useAsTitle: 'orgName',
+    group: 'Supporters',
   },
   access: {
     read: enabledOnly,

@@ -6,6 +6,7 @@ const Authors: CollectionConfig = {
   admin: {
     defaultColumns: ['name', 'bio', 'user'],
     useAsTitle: 'name',
+    group: 'Content',
   },
   access: {
     create: isAdmin,

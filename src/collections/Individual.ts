@@ -6,6 +6,7 @@ const Individual: CollectionConfig = {
   slug: 'individual',
   admin: {
     useAsTitle: 'email',
+    group: 'Supporters',
   },
   access: {
     read: enabledOnly,
