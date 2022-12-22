@@ -115,6 +115,9 @@ export interface User {
   id: string;
   name?: string;
   roles: ('admin' | 'public')[];
+  enableAPIKey?: boolean;
+  apiKey?: string;
+  apiKeyIndex?: string;
   email?: string;
   resetPasswordToken?: string;
   resetPasswordExpiration?: string;
@@ -178,8 +181,9 @@ export interface Coverage {
 export interface Individual {
   id: string;
   name: string;
+  date?: string;
   email: string;
-  organization?: string;
+  organisation?: string;
   designation?: string;
   declaration?: boolean;
   createdAt: string;
@@ -192,6 +196,7 @@ export interface Individual {
 export interface Organisation {
   id: string;
   orgName: string;
+  date?: string;
   link: string;
   name: string;
   email: string;
