@@ -1,4 +1,4 @@
-import { Block, CollectionConfig, GlobalConfig } from 'payload/types';
+import { Block, GlobalConfig } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
 
 const FAQBlock: Block = {
