@@ -18,6 +18,7 @@ import { Icon } from './components/Icon';
 
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { adapter } from './utils/s3';
+import Homepage from './globals/homepage';
 
 export default buildConfig({
   serverURL: process.env.SERVER_URL,
@@ -38,7 +39,7 @@ export default buildConfig({
   rateLimit: {
     trustProxy: process.env.NODE_ENV === 'production',
   },
-  globals: [Principles, Bill],
+  globals: [Principles, Bill, Homepage],
   collections: [Users, Authors, Blog, Coverage, Individual, Organisation, Media],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

@@ -9,7 +9,7 @@ const Individual: CollectionConfig = {
     group: 'Supporters',
   },
   access: {
-    read: enabledOnly,
+    read: () => true,
     create: () => true,
     update: isAdmin,
     delete: isAdmin,
