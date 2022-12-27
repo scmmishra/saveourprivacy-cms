@@ -109,6 +109,26 @@ export interface Bill {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: string;
+  heroTitle: string;
+  subtitle: {
+    [k: string]: unknown;
+  }[];
+  faqs: {
+    question: string;
+    answer: {
+      [k: string]: unknown;
+    }[];
+    id?: string;
+    blockName?: string;
+    blockType: 'faq-block';
+  }[];
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -186,6 +206,7 @@ export interface Individual {
   organisation?: string;
   designation?: string;
   declaration?: boolean;
+  enabled?: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -201,6 +222,7 @@ export interface Organisation {
   name: string;
   email: string;
   designation?: string;
+  enabled?: boolean;
   createdAt: string;
   updatedAt: string;
 }
