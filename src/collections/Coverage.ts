@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
 import { publishedOnly } from '../access/publishedOnly';
+import { afterChangeHook, afterDeleteHook } from '../utils/deploy';
 
 const Coverage: CollectionConfig = {
   slug: 'coverage',
@@ -18,6 +19,10 @@ const Coverage: CollectionConfig = {
     readVersions: isAdmin,
     update: isAdmin,
     delete: isAdmin,
+  },
+  hooks: {
+    afterChange: [afterChangeHook],
+    afterDelete: [afterDeleteHook],
   },
   fields: [
     {

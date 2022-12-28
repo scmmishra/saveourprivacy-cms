@@ -1,4 +1,5 @@
 import { GlobalConfig, Block } from 'payload/types';
+import { afterChangeHook } from '../utils/deploy';
 
 const SectionBlock: Block = {
   slug: 'section-block',
@@ -42,6 +43,9 @@ const Bill: GlobalConfig = {
   slug: 'bill',
   admin: {
     group: 'Pages',
+  },
+  hooks: {
+    afterChange: [afterChangeHook],
   },
   fields: [
     {

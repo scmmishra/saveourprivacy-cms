@@ -1,5 +1,6 @@
 import { Block, GlobalConfig } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
+import { afterChangeHook } from '../utils/deploy';
 
 const FAQBlock: Block = {
   slug: 'faq-block',
@@ -27,6 +28,9 @@ const Homepage: GlobalConfig = {
   access: {
     read: () => true,
     update: isAdmin,
+  },
+  hooks: {
+    afterChange: [afterChangeHook],
   },
   fields: [
     {

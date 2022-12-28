@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
+import { afterChangeHook, afterDeleteHook } from '../utils/deploy';
 
 const Media: CollectionConfig = {
   slug: 'media',
