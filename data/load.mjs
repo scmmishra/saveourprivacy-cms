@@ -18,6 +18,7 @@ async function makePost(base, jsonData) {
 
   const headers = {
     'Content-Type': 'application/json',
+    Authorization: `User API-Key <key>`,
   };
 
   const response = await ofetch(url, {
@@ -110,10 +111,10 @@ async function loadAuthors() {
   return authorIds;
 }
 
-const authorIds = await loadAuthors();
-await loadBlogs(authorIds);
-await loadCoverage();
+// const authorIds = await loadAuthors();
+// await loadBlogs(authorIds);
+// await loadCoverage();
 await loadOrgs();
-await loadIndividuals();
+// await loadIndividuals();
 
 export {};
