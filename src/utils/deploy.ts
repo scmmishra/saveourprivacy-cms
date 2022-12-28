@@ -10,9 +10,10 @@ async function triggerVercelDeploy(): Promise<void> {
 
   const response = await ofetch(process.env.VERCEL_DEPLOY_URL, {
     method: 'POST',
+    parseResponse: JSON.parse,
   });
 
-  if (!response.ok) {
+  if (!response.job) {
     throw new Error(`Failed to trigger Vercel deploy: ${response.statusText}`);
   }
 }
