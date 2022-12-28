@@ -14,7 +14,7 @@ async function triggerVercelDeploy(): Promise<void> {
   });
 
   if (!response.job) {
-    throw new Error(`Failed to trigger Vercel deploy: ${response.statusText}`);
+    throw new Error(`Failed to trigger Vercel deploy`);
   }
 }
 
