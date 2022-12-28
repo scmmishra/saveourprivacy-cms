@@ -15,6 +15,7 @@ import Bill from './globals/bill';
 import seo from '@payloadcms/plugin-seo';
 
 import { Icon } from './components/Icon';
+import AfterDashboard from './components/AfterDashboard';
 
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { adapter } from './utils/s3';
@@ -34,6 +35,7 @@ export default buildConfig({
         Logo: Icon,
         Icon,
       },
+      afterDashboard: [AfterDashboard],
     },
   },
   rateLimit: {
