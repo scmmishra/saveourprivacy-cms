@@ -24,10 +24,13 @@ export const afterChangeHook: CollectionAfterChangeHook = async ({
   previousDoc, // document data before updating the collection
   operation, // name of the operation ie. 'create', 'update'
 }) => {
-  if (
-    operation === 'update' ||
-    (operation === 'create' && doc._status === 'published')
-  ) {
+  if (operation === 'update') {
+    console.log('Updating a document, triggering Vercel deploy...');
+    await triggerVercelDeploy();
+  }
+
+  if (operation === 'create' && doc._status === 'published') {
+    console.log('Created a new published document, triggering Vercel deploy...');
     await triggerVercelDeploy();
   }
 };
