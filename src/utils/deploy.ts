@@ -1,5 +1,8 @@
-import { CollectionAfterChangeHook } from 'payload/types';
-import { CollectionAfterDeleteHook } from 'payload/types';
+import {
+  CollectionAfterChangeHook,
+  CollectionAfterDeleteHook,
+  GlobalAfterChangeHook,
+} from 'payload/types';
 import { ofetch } from 'ofetch';
 
 async function triggerVercelDeploy(): Promise<void> {
@@ -18,11 +21,14 @@ async function triggerVercelDeploy(): Promise<void> {
   }
 }
 
+export const globalAfterChangeHook: GlobalAfterChangeHook = async () => {
+  console.log('Updating a global document, triggering Vercel deploy...');
+  await triggerVercelDeploy();
+};
+
 export const afterChangeHook: CollectionAfterChangeHook = async ({
-  doc, // full document data
-  req, // full express request
-  previousDoc, // document data before updating the collection
-  operation, // name of the operation ie. 'create', 'update'
+  doc,
+  operation,
 }) => {
   if (operation === 'update') {
     console.log('Updating a document, triggering Vercel deploy...');

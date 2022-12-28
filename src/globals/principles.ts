@@ -1,5 +1,5 @@
 import { GlobalConfig, Block } from 'payload/types';
-import { afterChangeHook } from '../utils/deploy';
+import { globalAfterChangeHook } from '../utils/deploy';
 
 const PrincipleBlock: Block = {
   slug: 'principle-block',
@@ -25,7 +25,7 @@ const Principles: GlobalConfig = {
     group: 'Pages',
   },
   hooks: {
-    afterChange: [afterChangeHook],
+    afterChange: [globalAfterChangeHook],
   },
   fields: [
     {
