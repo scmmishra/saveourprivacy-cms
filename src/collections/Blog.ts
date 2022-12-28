@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
 import { publishedOnly } from '../access/publishedOnly';
+import { afterChangeHook, afterDeleteHook } from '../utils/deploy';
 import { formatSlug } from '../utils/string';
 
 const Blog: CollectionConfig = {
@@ -19,6 +20,10 @@ const Blog: CollectionConfig = {
     readVersions: isAdmin,
     update: isAdmin,
     delete: isAdmin,
+  },
+  hooks: {
+    afterChange: [afterChangeHook],
+    afterDelete: [afterDeleteHook],
   },
   fields: [
     {
