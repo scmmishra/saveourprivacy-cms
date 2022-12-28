@@ -37,6 +37,18 @@ export default buildConfig({
       },
       afterDashboard: [AfterDashboard],
     },
+    webpack: config => {
+      return {
+        ...config,
+        resolve: {
+          ...config.resolve,
+          fallback: {
+            ...config.resolve?.fallback,
+            fs: false,
+          },
+        },
+      };
+    },
   },
   rateLimit: {
     trustProxy: process.env.NODE_ENV === 'production',
