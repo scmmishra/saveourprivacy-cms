@@ -1,4 +1,5 @@
 import { GlobalConfig, Block } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
 import { globalAfterChangeHook } from '../utils/deploy';
 
 const PrincipleBlock: Block = {
@@ -26,6 +27,10 @@ const Principles: GlobalConfig = {
   },
   hooks: {
     afterChange: [globalAfterChangeHook],
+  },
+  access: {
+    read: () => true,
+    update: isAdmin,
   },
   fields: [
     {
