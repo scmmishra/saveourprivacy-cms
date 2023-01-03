@@ -60,6 +60,20 @@ const Blog: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      admin: {
+        elements: [
+          'h3',
+          'h4',
+          'h5',
+          'h6',
+          'link',
+          'ol',
+          'ul',
+          'indent',
+          'relationship',
+          'upload',
+        ],
+      },
     },
   ],
 };
