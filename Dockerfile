@@ -1,21 +1,25 @@
-# Setup the build container.
-FROM node:14-alpine AS build
+FROM node:18-alpine as base
 
-WORKDIR /app
+FROM base as builder
+
+WORKDIR /home/node
+COPY package*.json ./
 
 COPY . .
-
-# run yarn
-RUN yarn
-
-# Build the application.
+RUN yarn install
 RUN yarn build
 
-# set production env
-ENV NODE_ENV production
+FROM base as runtime
 
-# Expose the service's port.
+ENV NODE_ENV=production
+
+WORKDIR /home/node
+COPY package*.json  ./
+
+RUN yarn install --production
+COPY --from=builder /home/node/dist ./dist
+COPY --from=builder /home/node/build ./build
+
 EXPOSE 3000
 
-# Run the service.
-CMD ["yarn", "run", "serve"]
+CMD ["node", "dist/server.js"]
