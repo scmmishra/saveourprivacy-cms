@@ -1,4 +1,5 @@
 import { GlobalConfig, Block } from 'payload/types';
+import { isAdmin } from '../access/isAdmin';
 import { globalAfterChangeHook } from '../utils/deploy';
 
 const SectionBlock: Block = {
@@ -46,6 +47,10 @@ const Bill: GlobalConfig = {
   },
   hooks: {
     afterChange: [globalAfterChangeHook],
+  },
+  access: {
+    read: () => true,
+    update: isAdmin,
   },
   fields: [
     {
