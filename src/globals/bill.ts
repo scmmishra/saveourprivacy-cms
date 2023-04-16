@@ -2,6 +2,22 @@ import { GlobalConfig, Block } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
 import { globalAfterChangeHook } from '../utils/deploy';
 
+const SubsectionBlock: Block = {
+  slug: 'subsection-block',
+  fields: [
+    {
+      name: 'text',
+      type: 'richText',
+      label: 'Subsection Text',
+    },
+  ],
+};
+
+const PartBlock: Block = {
+  slug: 'part-block',
+  fields: [],
+};
+
 const SectionBlock: Block = {
   slug: 'section-block',
   fields: [
@@ -11,6 +27,13 @@ const SectionBlock: Block = {
       type: 'text',
       label: 'Section Title',
       required: true,
+    },
+    {
+      name: 'subSections',
+      type: 'blocks',
+      minRows: 1,
+      maxRows: 10,
+      blocks: [SubsectionBlock],
     },
     {
       name: 'body',
