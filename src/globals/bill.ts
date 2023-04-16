@@ -6,7 +6,7 @@ const SubsectionBlock: Block = {
   slug: 'subsection-block',
   fields: [
     {
-      name: 'text',
+      name: 'subsectionText',
       type: 'richText',
       label: 'Subsection Text',
     },
@@ -15,7 +15,18 @@ const SubsectionBlock: Block = {
 
 const PartBlock: Block = {
   slug: 'part-block',
-  fields: [],
+  fields: [
+    {
+      name: 'number',
+      type: 'text',
+      label: 'Part Number',
+    },
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Part Name',
+    },
+  ],
 };
 
 const SectionBlock: Block = {
@@ -32,7 +43,6 @@ const SectionBlock: Block = {
       name: 'subSections',
       type: 'blocks',
       minRows: 1,
-      maxRows: 10,
       blocks: [SubsectionBlock],
     },
     {
@@ -57,11 +67,13 @@ const ChapterBlock: Block = {
       name: 'sections',
       type: 'blocks',
       minRows: 1,
-      maxRows: 10,
-      blocks: [SectionBlock],
+      blocks: [SectionBlock, PartBlock],
     },
   ],
 };
+
+// schema
+// chat
 
 const Bill: GlobalConfig = {
   slug: 'bill',
