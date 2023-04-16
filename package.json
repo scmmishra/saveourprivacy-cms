@@ -22,6 +22,7 @@
     "@payloadcms/plugin-seo": "^1.0.8",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
+    "ofetch": "^1.0.1",
     "payload": "^1.1.2",
     "pup-fetch": "^0.0.1"
   },

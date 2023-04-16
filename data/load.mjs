@@ -1,5 +1,5 @@
 import csv from 'csvtojson';
-import { post } from 'pup-fetch';
+import { ofetch } from 'ofetch';
 import { htmlToSlate } from 'slate-serializers';
 
 async function loadCsv(filename) {
@@ -13,15 +13,20 @@ const orgData = await loadCsv('./data/orgs-export.csv');
 const individualData = await loadCsv('./data/individuals-export.csv');
 
 async function makePost(base, jsonData) {
-  // const url = `https://sop-admin.shivam.dev/api/${base}`; // prod
-  const url = `http://localhost:4000/api/${base}`; // local
+  const url = `https://sop-admin.shivam.dev/api/${base}`; // prod
+  // const url = `http://localhost:4000/api/${base}`; // local
 
   const headers = {
     'Content-Type': 'application/json',
     Authorization: `User API-Key <key>`,
   };
 
-  const response = await post(url, jsonData, { headers });
+  const response = await ofetch(url, {
+    method: 'POST',
+    headers,
+    body: jsonData,
+    parseResponse: JSON.parse,
+  });
 
   return response;
 }
