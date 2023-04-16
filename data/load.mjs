@@ -1,5 +1,5 @@
 import csv from 'csvtojson';
-import { ofetch } from 'ofetch';
+import { post } from 'pup-fetch';
 import { htmlToSlate } from 'slate-serializers';
 
 async function loadCsv(filename) {
@@ -21,7 +21,7 @@ async function makePost(base, jsonData) {
     Authorization: `User API-Key <key>`,
   };
 
-  const response = await ofetch(url, {
+  const response = await post(url, {
     method: 'POST',
     headers,
     body: jsonData,
@@ -111,10 +111,10 @@ async function loadAuthors() {
   return authorIds;
 }
 
-// const authorIds = await loadAuthors();
-// await loadBlogs(authorIds);
-// await loadCoverage();
+const authorIds = await loadAuthors();
+await loadBlogs(authorIds);
+await loadCoverage();
 await loadOrgs();
-// await loadIndividuals();
+await loadIndividuals();
 
 export {};
