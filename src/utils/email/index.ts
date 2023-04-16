@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+const fs = require('fs');
 
 export async function generateEmail(
   title: string,
