@@ -3,7 +3,7 @@ import {
   CollectionAfterDeleteHook,
   GlobalAfterChangeHook,
 } from 'payload/types';
-import { ofetch } from 'ofetch';
+import { post } from 'pup-fetch';
 
 async function triggerVercelDeploy(): Promise<void> {
   if (process.env.NODE_ENV !== 'production') {
@@ -11,10 +11,7 @@ async function triggerVercelDeploy(): Promise<void> {
     return;
   }
 
-  const response = await ofetch(process.env.VERCEL_DEPLOY_URL, {
-    method: 'POST',
-    parseResponse: JSON.parse,
-  });
+  const response = await post<{ job?: string }>(process.env.VERCEL_DEPLOY_URL, {});
 
   if (!response.job) {
     throw new Error(`Failed to trigger Vercel deploy`);
