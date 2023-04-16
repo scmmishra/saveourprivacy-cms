@@ -2,17 +2,6 @@ import { GlobalConfig, Block } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
 import { globalAfterChangeHook } from '../utils/deploy';
 
-const SubsectionBlock: Block = {
-  slug: 'subsection-block',
-  fields: [
-    {
-      name: 'subsectionText',
-      type: 'richText',
-      label: 'Subsection Text',
-    },
-  ],
-};
-
 const PartBlock: Block = {
   slug: 'part-block',
   fields: [
@@ -21,30 +10,12 @@ const PartBlock: Block = {
       type: 'text',
       label: 'Part Number',
     },
-    {
-      name: 'title',
-      type: 'text',
-      label: 'Part Name',
-    },
   ],
 };
 
 const SectionBlock: Block = {
   slug: 'section-block',
   fields: [
-    // required
-    {
-      name: 'title',
-      type: 'text',
-      label: 'Section Title',
-      required: true,
-    },
-    {
-      name: 'subSections',
-      type: 'blocks',
-      minRows: 1,
-      blocks: [SubsectionBlock],
-    },
     {
       name: 'body',
       label: 'Section Body',
@@ -56,13 +27,6 @@ const SectionBlock: Block = {
 const ChapterBlock: Block = {
   slug: 'chapter-block',
   fields: [
-    // required
-    {
-      name: 'title',
-      type: 'text',
-      label: 'Chapter Name',
-      required: true,
-    },
     {
       name: 'sections',
       type: 'blocks',
@@ -123,6 +87,11 @@ const Bill: GlobalConfig = {
               minRows: 0,
               maxRows: 10,
               blocks: [ChapterBlock],
+            },
+            {
+              name: 'schedule',
+              type: 'richText',
+              label: 'Schedule',
             },
           ],
         },
